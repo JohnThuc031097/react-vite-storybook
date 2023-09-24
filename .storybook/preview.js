@@ -1,4 +1,3 @@
-import { themes } from '@storybook/theming';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
