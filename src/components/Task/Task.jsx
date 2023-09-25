@@ -10,7 +10,6 @@ import StarBorderRounded from '@mui/icons-material/StarBorderRounded';
 
 // import './task.css'
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 export default function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
     return (
