@@ -1,7 +1,7 @@
 
 import TaskList from './TaskList';
 
-import * as TaskStories from '../Task/Task.stories';
+import * as TaskStories from '../Task.stories';
 
 export default {
     component: TaskList,
@@ -30,6 +30,15 @@ export const WithPinnedTasks = {
         tasks: [
             ...Default.args.tasks.slice(0, 5),
             { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },
+        ],
+    },
+};
+
+export const WithArchivedTasks = {
+    args: {
+        tasks: [
+            ...Default.args.tasks.slice(0, 5),
+            { id: '6', title: 'Task 6 (archived)', state: 'TASK_ARCHIVED' },
         ],
     },
 };
