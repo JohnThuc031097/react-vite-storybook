@@ -10,8 +10,16 @@ import StarBorderRounded from '@mui/icons-material/StarBorderRounded';
 
 // import './task.css'
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
 export default function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
+    const [archiveTask, setArchiveTask] = useState(onArchiveTask)
+    const [pinTask, setPinTask] = useState(onPinTask)
+
+    useEffect(() => {
+        setArchiveTask(onArchiveTask)
+    }, [onArchiveTask])
+
     return (
         <Sheet
             sx={{
@@ -34,14 +42,17 @@ export default function Task({ task: { id, title, state }, onArchiveTask, onPinT
                     boxShadow: 'md'
                 }}
             >
-                <Checkbox size='lg' color='primary' variant='outlined' checked={state === 'TASK_ARCHIVED'}
-                    onChange={onArchiveTask}
+                <Checkbox size='lg' color='primary' variant='outlined' checked={archiveTask}
+                    onChange={() => {
+                        setArchiveTask(!archiveTask)
+                        onArchiveTask = !archiveTask
+                    }}
                 />
                 <Input size='md' sx={{ width: '100%' }} placeholder="Input task here..." variant="soft" defaultValue={title} />
                 <IconButton
-                    onClick={onPinTask}
+                    onClick={() => setPinTask(!pinTask)}
                 >
-                    <StarBorderRounded color={state === 'TASK_PINNED' ? 'warning' : 'neutral'} />
+                    <StarBorderRounded color={pinTask ? 'warning' : 'neutral'} />
                 </IconButton>
             </Stack>
         </Sheet>
@@ -54,6 +65,6 @@ Task.propTypes = {
         title: PropTypes.string.isRequired,
         state: PropTypes.string.isRequired,
     }),
-    onArchiveTask: PropTypes.func,
-    onPinTask: PropTypes.func,
+    onArchiveTask: PropTypes.bool,
+    onPinTask: PropTypes.bool,
 }

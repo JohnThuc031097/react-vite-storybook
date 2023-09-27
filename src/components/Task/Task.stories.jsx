@@ -14,9 +14,8 @@ export const Default = {
             title: 'Test Task',
             state: 'TASK_INBOX',
         },
-        onArchiveTask: function (e) {
-            console.log(e.target.value)
-        }
+        onArchiveTask: false,
+        onPinTask: false,
     },
 };
 
