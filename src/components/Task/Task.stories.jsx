@@ -14,8 +14,8 @@ export const Default = {
             title: 'Test Task',
             state: 'TASK_INBOX',
         },
-        onArchiveTask: false,
-        onPinTask: false,
+        isArchive: false,
+        isPin: false,
     },
 };
 
@@ -25,6 +25,8 @@ export const Pinned = {
             ...Default.args.task,
             state: 'TASK_PINNED',
         },
+        isArchive: false,
+        isPin: true,
     },
 };
 
@@ -34,5 +36,7 @@ export const Archived = {
             ...Default.args.task,
             state: 'TASK_ARCHIVED',
         },
+        isArchive: true,
+        isPin: false,
     },
 };

@@ -5,20 +5,22 @@ import Checkbox from '@mui/joy/Checkbox';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
 import IconButton from '@mui/joy/IconButton';
-
 import StarBorderRounded from '@mui/icons-material/StarBorderRounded';
 
-// import './task.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
-export default function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
-    const [archiveTask, setArchiveTask] = useState(onArchiveTask)
-    const [pinTask, setPinTask] = useState(onPinTask)
+export default function Task({ task, isArchive, isPin }) {
+    const [archiveTask, setArchiveTask] = useState(isArchive)
+    const [pinTask, setPinTask] = useState(isPin)
 
     useEffect(() => {
-        setArchiveTask(onArchiveTask)
-    }, [onArchiveTask])
+        setArchiveTask(isArchive)
+    }, [isArchive])
+
+    useEffect(() => {
+        setPinTask(isPin)
+    }, [isPin])
 
     return (
         <Sheet
@@ -43,12 +45,9 @@ export default function Task({ task: { id, title, state }, onArchiveTask, onPinT
                 }}
             >
                 <Checkbox size='lg' color='primary' variant='outlined' checked={archiveTask}
-                    onChange={() => {
-                        setArchiveTask(!archiveTask)
-                        onArchiveTask = !archiveTask
-                    }}
+                    onChange={() => setArchiveTask(!archiveTask)}
                 />
-                <Input size='md' sx={{ width: '100%' }} placeholder="Input task here..." variant="soft" defaultValue={title} />
+                <Input size='md' sx={{ width: '100%' }} placeholder="Input task here..." variant="soft" defaultValue={task.title} />
                 <IconButton
                     onClick={() => setPinTask(!pinTask)}
                 >
@@ -60,11 +59,7 @@ export default function Task({ task: { id, title, state }, onArchiveTask, onPinT
 }
 
 Task.propTypes = {
-    task: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        state: PropTypes.string.isRequired,
-    }),
-    onArchiveTask: PropTypes.bool,
-    onPinTask: PropTypes.bool,
+    task: PropTypes.object.isRequired,
+    isArchive: PropTypes.bool,
+    isPin: PropTypes.bool,
 }

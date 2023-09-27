@@ -10,11 +10,7 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import Task from '../Task';
 import PropTypes from 'prop-types'
 
-export default function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
-    const events = {
-        onPinTask,
-        onArchiveTask,
-    };
+export default function TaskList({ loading, tasks, isArchive, isPin }) {
     const LoadingRow = (
         <Sheet
             sx={{
@@ -109,7 +105,7 @@ export default function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
             }}
         >
             {tasksInOrder.map((task) => (
-                <Task key={task.id} task={task} {...events} />
+                <Task key={task.id} task={task} isArchiv={isArchive} isPin={isPin} />
             ))}
         </Sheet>
     );
@@ -118,8 +114,8 @@ export default function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
 TaskList.propTypes = {
     loading: PropTypes.bool,
     tasks: PropTypes.array,
-    onPinTask: PropTypes.func,
-    onArchiveTask: PropTypes.func,
+    isArchive: PropTypes.bool,
+    isPin: PropTypes.bool,
 }
 
 TaskList.defalutProps = {

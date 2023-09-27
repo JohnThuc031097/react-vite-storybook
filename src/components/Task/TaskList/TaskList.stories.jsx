@@ -22,6 +22,8 @@ export const Default = {
             { ...TaskStories.Default.args.task, id: '5', title: 'Task 5' },
             { ...TaskStories.Default.args.task, id: '6', title: 'Task 6' },
         ],
+        isArchive: false,
+        isPin: false,
     },
 };
 
@@ -31,6 +33,8 @@ export const WithPinnedTasks = {
             ...Default.args.tasks.slice(0, 5),
             { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },
         ],
+        isArchive: false,
+        isPin: true,
     },
 };
 
@@ -40,6 +44,8 @@ export const WithArchivedTasks = {
             ...Default.args.tasks.slice(0, 5),
             { id: '6', title: 'Task 6 (archived)', state: 'TASK_ARCHIVED' },
         ],
+        isArchive: true,
+        isPin: false,
     },
 };
 
