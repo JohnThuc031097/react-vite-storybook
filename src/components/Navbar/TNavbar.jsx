@@ -2,9 +2,9 @@
 import { Navbar, NavbarContent, Input, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
 import { IconSearch } from "../Icons/IconSearch";
 
-export default function App() {
+export default function TNavbar() {
     return (
-        <Navbar maxWidth="full" isBordered>
+        <Navbar isBordered>
             <NavbarContent as="div" className="items-center" justify="start">
                 <Input classNames={{
                     base: "sm:max-w-[10rem] h-10",
