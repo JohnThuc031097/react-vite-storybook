@@ -10,7 +10,6 @@ const config = {
         "@storybook/addon-links",
         "@storybook/addon-essentials",
         "@storybook/addon-onboarding",
-        "@storybook/addon-interactions",
         // {
         //     name: '@storybook/addon-styling',
         //     options: {
@@ -19,10 +18,10 @@ const config = {
         //         },
         //     },
         // },
+        "@storybook/addon-interactions",
+        "@storybook/addon-mdx-gfm"
     ],
-    core: {
-        builder: '@storybook/builder-vite', // 👈 The builder enabled here.
-    },
+    core: {},
     framework: {
         name: "@storybook/react-vite",
         options: {},
