@@ -1,29 +1,45 @@
+
 import {
     Stack, Box,
     Typography,
     Button,
-    Accordion, AccordionSummary, AccordionDetails, styled
+    styled
 } from '@mui/material';
 
 import {
+    SyncOutlined as SyncOutlinedIcon,
     HomeOutlined as HomeOutlinedIcon,
     SettingsOutlined as SettingsOutlinedIcon,
     ExpandMore as ExpandMoreIcon
 } from '@mui/icons-material';
 
 import { IconLogo } from '../Icons/IconLogo';
+import { useState } from 'react';
+
+const lsMenu = {
+    syncs: {
+        title: 'Syncs',
+        isOpen: false,
+    },
+    settings: {
+        title: 'Settings',
+        isOpen: false,
+    }
+}
+const ItemButton = styled(Button)({
+    color: '#000000',
+    fontWeight: 'bold',
+    textTransform: 'none',
+    justifyContent: 'flex-start',
+    flexGrow: 1,
+    "&:hover": {
+        color: '#696CFF'
+    },
+})
 
 export default function TMenu() {
-    const ItemButton = styled(Button)({
-        color: '#000000',
-        fontWeight: 'bold',
-        textTransform: 'none',
-        justifyContent: 'space-between',
-        flexGrow: 1,
-        "&:hover": {
-            color: '#696CFF'
-        }
-    })
+
+    const [menu, setMenu] = useState(lsMenu)
 
     return (
         <Box sx={{
@@ -54,27 +70,32 @@ export default function TMenu() {
                 <ItemButton size='large' variant='text' startIcon={<HomeOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
                     Dashboard
                 </ItemButton>
+                <ItemButton size='large' variant='text' startIcon={<SyncOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
+                    Syncs
+                </ItemButton>
+                <Stack
+                    direction="column"
+                    justifyContent="flex-start"
+                    alignItems="start"
+                    spacing={2}
+                >
+                    <ItemButton size='small' variant='text' fullWidth>
+                        Master Data
+                    </ItemButton>
+                    <ItemButton size='small' variant='text' fullWidth>
+                        R-Keeper
+                    </ItemButton>
+                    <ItemButton size='small' variant='text' fullWidth>
+                        CO/SO
+                    </ItemButton>
+                </Stack>
                 <ItemButton size='large' variant='text' startIcon={<HomeOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
-                    Todos
+                    Syncs
                 </ItemButton>
                 <ItemButton size='large' variant='text' startIcon={<SettingsOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
                     Settings
                 </ItemButton>
-                <Accordion sx={{ width: '100%' }}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel-settings-content"
-                        id="panel-settings-header"
-                    >
-                        <Typography >Settings</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            Profile
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
             </Stack>
-        </Box>
+        </Box >
     )
 }
