@@ -1,100 +1,113 @@
-
 import {
     Stack, Box,
+    List, ListSubheader, ListItemButton, ListItemIcon, ListItemText,
+    Collapse,
     Typography,
     Button,
-    styled
+    styled,
 } from '@mui/material';
-
 import {
     SyncOutlined as SyncOutlinedIcon,
     HomeOutlined as HomeOutlinedIcon,
     SettingsOutlined as SettingsOutlinedIcon,
-    ExpandMore as ExpandMoreIcon
+    ExpandMore as ExpandMoreIcon,
+    ExpandLess as ExpandLessIcon,
+    FiberManualRecord as FiberManualRecordIcon,
 } from '@mui/icons-material';
 
 import { IconLogo } from '../Icons/IconLogo';
-import { useState } from 'react';
+import MenuList from './MenuList';
 
-const lsMenu = {
-    syncs: {
+
+
+const lsMenu = [
+    {
+        title: 'Dashboard',
+        icon: HomeOutlinedIcon,
+        onClick: () => console.log('Click ' + this.title),
+        items: null
+    },
+    {
         title: 'Syncs',
-        isOpen: false,
+        icon: SyncOutlinedIcon,
+        onClick: () => console.log('Click ' + this.title),
+        items: [
+            {
+                title: 'Menu',
+                isSelected: false,
+                onClick: () => console.log('Click ' + this.title)
+            },
+            {
+                title: 'Master Data',
+                isSelected: false,
+                onClick: () => console.log('Click ' + this.title)
+            },
+            {
+                title: 'Customer',
+                isSelected: false,
+                onClick: () => console.log('Click ' + this.title)
+            },
+        ]
     },
-    settings: {
+    {
         title: 'Settings',
-        isOpen: false,
-    }
-}
-const ItemButton = styled(Button)({
-    color: '#000000',
-    fontWeight: 'bold',
-    textTransform: 'none',
-    justifyContent: 'flex-start',
-    flexGrow: 1,
-    "&:hover": {
-        color: '#696CFF'
+        icon: SettingsOutlinedIcon,
+        onClick: () => console.log('Click ' + this.title),
+        items: [
+            {
+                title: 'Profile',
+                isSelected: false,
+                onClick: () => console.log('Click ' + this.title)
+            },
+        ]
     },
-})
+
+]
 
 export default function TMenu() {
-
-    const [menu, setMenu] = useState(lsMenu)
 
     return (
         <Box sx={{
             flexGrow: 1,
             backgroundColor: 'white',
-            width: '20%',
+            width: '320px',
             padding: '10px 10px 10px 10px'
         }} >
             <Stack
                 direction="column"
                 justifyContent="flex-start"
                 alignItems="start"
-                spacing={2}
+                spacing={1}
             >
+                <div style={{ paddingBottom: '20px' }}></div>
                 <Stack
                     direction="row"
-                    justifyContent="flex-start"
+                    justifyContent="center"
                     justifyItems="center"
-                    alignItems="stretch"
+                    alignItems="center"
                     spacing={1}
+                    sx={{ paddingLeft: '10px' }}
                 >
-                    <IconLogo width={36} height={36}></IconLogo>
-                    <Typography sx={{ color: '#000000', fontSize: '22px', fontFamily: "'Roboto', sans-serif", fontWeight: 'bold' }}>
-                        T-Speed
+                    <IconLogo width={42} height={42}></IconLogo>
+                    <Typography sx={{ paddingLeft: '20px', color: '#000000', fontSize: '30px', fontWeight: 'bold' }}>
+                        T-Monitor
                     </Typography>
                 </Stack>
-                <div style={{ paddingBottom: '10px' }}></div>
-                <ItemButton size='large' variant='text' startIcon={<HomeOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
-                    Dashboard
-                </ItemButton>
-                <ItemButton size='large' variant='text' startIcon={<SyncOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
-                    Syncs
-                </ItemButton>
-                <Stack
-                    direction="column"
-                    justifyContent="flex-start"
-                    alignItems="start"
-                    spacing={2}
+                <div style={{ paddingBottom: '20px' }}></div>
+
+                <List
+                    sx={{
+                        width: '100%',
+                    }}
+                    component="nav"
                 >
-                    <ItemButton size='small' variant='text' fullWidth>
-                        Master Data
-                    </ItemButton>
-                    <ItemButton size='small' variant='text' fullWidth>
-                        R-Keeper
-                    </ItemButton>
-                    <ItemButton size='small' variant='text' fullWidth>
-                        CO/SO
-                    </ItemButton>
-                </Stack>
-                <ItemButton size='large' variant='text' startIcon={<HomeOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
-                    Syncs
-                </ItemButton>
-                <ItemButton size='large' variant='text' startIcon={<SettingsOutlinedIcon />} endIcon={<ExpandMoreIcon />} fullWidth>
-                    Settings
-                </ItemButton>
+                    {lsMenu.map((menu, index) => {
+                        return (
+                            <MenuList key={index} Icon={menu.icon} title={menu.title} items={menu.items} />
+                        )
+                    })}
+                </List>
+
             </Stack>
         </Box >
     )
