@@ -14,9 +14,9 @@ export default function TMenu() {
         <Box sx={{
             flexGrow: 1,
             backgroundColor: 'white',
-            width: '320px',
-            height: '850px',
-            padding: '10px 10px 1px 10px',
+            width: '300px',
+            height: '650px',
+            padding: '10px 10px 10px 10px',
             borderRadius: '20px'
         }} >
             <Stack
@@ -45,7 +45,7 @@ export default function TMenu() {
                 <List
                     sx={{
                         width: '100%',
-                        height: '650px',
+                        height: '450px',
                         overflow: 'auto',
                     }}
                     component="nav"

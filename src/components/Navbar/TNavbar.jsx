@@ -1,12 +1,21 @@
 
-import { Logout, NotificationsNoneOutlined, Person, Settings } from "@mui/icons-material";
+import {
+    Logout as LogoutIcon,
+    NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
+    Person as PersonIcon,
+    Settings as SettingsIcon,
+    Search as SearchIcon,
+} from "@mui/icons-material";
 import {
     Box, Stack,
     IconButton,
     Avatar,
     Menu, MenuItem,
     Divider,
-    ListItemIcon
+    ListItemIcon,
+    Paper,
+    InputBase,
+    Badge
 } from "@mui/material";
 
 import { useState } from 'react'
@@ -26,18 +35,42 @@ export default function TNavbar() {
                 sx={{
                     flexGrow: 1,
                     backgroundColor: 'white',
-                    width: '800px',
-                    height: '40px',
-                    padding: '10px 10px 10px 10px',
-                    borderRadius: '20px'
+                    width: '100%',
+                    height: 35,
+                    ml: '-10px',
+                    padding: '10px 15px 8px 5px',
+                    borderRadius: '15px'
                 }}
             >
                 <Stack
                     direction="row"
-                    justifyContent="right"
+                    justifyContent="space-between"
                     alignItems="center"
                     spacing={1}
                 >
+                    <Box sx={{ width: '20px' }}></Box>
+                    <Paper
+                        component="form"
+                        sx={{
+                            p: '2px 4px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            width: 600,
+                            height: 25,
+                            backgroundColor: '#fdfdfd',
+                        }}
+                    >
+                        <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
+                            <SearchIcon />
+                        </IconButton>
+                        <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
+                        <InputBase
+                            sx={{ ml: 1, flex: 1 }}
+                            placeholder="Quick search..."
+                            inputProps={{ 'aria-label': 'quick search' }}
+                        />
+                    </Paper>
+                    <Box sx={{ width: '100%' }}></Box>
                     <IconButton
                         onClick={handleClick}
                         size="small"
@@ -46,7 +79,9 @@ export default function TNavbar() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <NotificationsNoneOutlined sx={{ width: 32, height: 32 }} />
+                        <Badge color="error" badgeContent={1}>
+                            <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24 }} />
+                        </Badge>
                     </IconButton>
                     <IconButton
                         onClick={handleClick}
@@ -56,7 +91,7 @@ export default function TNavbar() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 34, height: 34 }}>T</Avatar>
+                        <Avatar sx={{ width: 24, height: 24 }}>T</Avatar>
                     </IconButton>
                 </Stack>
             </Box>
@@ -98,20 +133,20 @@ export default function TNavbar() {
             >
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <Person fontSize="small" />
+                        <PersonIcon fontSize="small" />
                     </ListItemIcon>
                     Profile
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <Settings fontSize="small" />
+                        <SettingsIcon fontSize="small" />
                     </ListItemIcon>
                     Settings
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <Logout fontSize="small" />
+                        <LogoutIcon fontSize="small" />
                     </ListItemIcon>
                     Logout
                 </MenuItem>
