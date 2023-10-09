@@ -41,9 +41,10 @@ export default function MenuList({ Icon, title, onClick, items }) {
                 <List component="div" disablePadding>
                     {items.map((item, index) => {
                         return (
-                            <ListItemButton key={index} sx={{ pl: 4 }} onClick={() => handleSelectedClick(index)}>
+                            <ListItemButton key={index} sx={{ pl: 6 }} onClick={() => handleSelectedClick(index)}>
                                 <ListItemIcon>
                                     {/* {selected[index] && <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} />} */}
+                                    <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} />
                                 </ListItemIcon>
                                 <ListItemText primary={item.title} />
                             </ListItemButton>

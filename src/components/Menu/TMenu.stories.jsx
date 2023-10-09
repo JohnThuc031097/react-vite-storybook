@@ -1,8 +1,8 @@
-import Login from './Login'
+import TMenu from "./TMenu";
 
 export default {
-    component: Login,
-    title: 'Login',
+    component: TMenu,
+    title: 'T-Monitor/TMenu',
     tags: ['autodocs'],
 };
 
