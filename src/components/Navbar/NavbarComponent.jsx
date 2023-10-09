@@ -23,6 +23,7 @@ import { useState } from 'react'
 export default function NavbarComponent() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -31,70 +32,65 @@ export default function NavbarComponent() {
     };
     return (
         <>
-            <Box
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                spacing={1}
                 sx={{
-                    flexGrow: 1,
-                    backgroundColor: 'white',
-                    width: '100%',
-                    height: 35,
-                    ml: '-10px',
-                    padding: '10px 15px 8px 5px',
-                    borderRadius: '15px'
+                    bgcolor: 'white',
+                    width: '99%',
+                    height: '50px',
+                    borderRadius: '15px',
                 }}
             >
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    spacing={1}
+                <Box sx={{ width: '20px' }}></Box>
+                <Paper
+                    component="form"
+                    sx={{
+                        p: '2px 4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: 600,
+                        height: 25,
+                        backgroundColor: '#fdfdfd',
+                    }}
                 >
-                    <Box sx={{ width: '20px' }}></Box>
-                    <Paper
-                        component="form"
-                        sx={{
-                            p: '2px 4px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            width: 600,
-                            height: 25,
-                            backgroundColor: '#fdfdfd',
-                        }}
-                    >
-                        <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
-                            <SearchIcon />
-                        </IconButton>
-                        <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
-                        <InputBase
-                            sx={{ ml: 1, flex: 1 }}
-                            placeholder="Quick search..."
-                            inputProps={{ 'aria-label': 'quick search' }}
-                        />
-                    </Paper>
-                    <Box sx={{ width: '100%' }}></Box>
-                    <IconButton
-                        onClick={handleClick}
-                        size="small"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                    >
-                        <Badge color="error" badgeContent={1}>
-                            <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24 }} />
-                        </Badge>
+                    <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
+                        <SearchIcon />
                     </IconButton>
-                    <IconButton
-                        onClick={handleClick}
-                        size="small"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                    >
-                        <Avatar sx={{ width: 24, height: 24 }}>T</Avatar>
-                    </IconButton>
-                </Stack>
-            </Box>
+                    <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
+                    <InputBase
+                        sx={{ ml: 1, flex: 1 }}
+                        placeholder="Quick search..."
+                        inputProps={{ 'aria-label': 'quick search' }}
+                    />
+                </Paper>
+                <Box sx={{ width: '100%' }}></Box>
+                <IconButton
+                    // onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                >
+                    <Badge color="error" badgeContent={1}>
+                        <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24 }} />
+                    </Badge>
+                </IconButton>
+                <IconButton
+                    onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                >
+                    <Avatar sx={{ width: 24, height: 24 }}>T</Avatar>
+                </IconButton>
+                <Box sx={{ width: '10px' }}></Box>
+            </Stack>
             <Menu
                 anchorEl={anchorEl}
                 id="account-menu"

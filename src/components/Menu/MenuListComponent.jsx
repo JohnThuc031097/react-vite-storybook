@@ -5,48 +5,54 @@ import {
 import {
     ExpandMore as ExpandMoreIcon,
     ExpandLess as ExpandLessIcon,
-    FiberManualRecord as FiberManualRecordIcon,
+    // FiberManualRecord as FiberManualRecordIcon,
 } from '@mui/icons-material';
 import { useState } from 'react';
 
 export default function MenuListComponent({ Icon, title, onClick, items }) {
     const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState(new Array(items?.length).fill(false));
+    // const [selected, setSelected] = useState(false);
+    // const [selectedChild, setSelectedChild] = useState(new Array(items?.length).fill(false));
 
-    const handleMenuClick = () => {
+    const handleOpenMenuClick = () => {
         setOpen(!open);
+        return onClick
     };
 
-    const handleSelectedClick = (key) => {
-        const dataNew = selected.map((val, i) => {
-            if (key === i) {
-                return true
-            } else {
-                return false
-            }
-        })
-        setSelected(dataNew)
-    };
+    // const handleSelectedChildClick = (key) => {
+    //     const dataNew = selectedChild.map((val, i) => {
+    //         if (key === i) {
+    //             return true
+    //         } else {
+    //             return false
+    //         }
+    //     })
+    //     setSelectedChild(dataNew)
+    // };
+
+    // const handleSelectedClick = () => {
+    //     setSelected(!selected)
+    // }
 
     return items ? (
         <>
-            <ListItemButton onClick={handleMenuClick}>
-                <ListItemIcon>
-                    <Icon />
+            <ListItemButton onClick={handleOpenMenuClick}>
+                <ListItemIcon sx={{ minWidth: '32px' }}>
+                    <Icon sx={{ width: '18px', height: '18px' }} />
                 </ListItemIcon>
-                <ListItemText primary={title} />
+                <ListItemText secondary={title} />
                 {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {items.map((item, index) => {
                         return (
-                            <ListItemButton key={index} sx={{ pl: 6 }} onClick={() => handleSelectedClick(index)}>
-                                <ListItemIcon>
+                            <ListItemButton key={index} sx={{ pl: 4 }} onClick={items.onClick} >
+                                <ListItemIcon sx={{ minWidth: '18px' }}>
                                     {/* {selected[index] && <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} />} */}
-                                    <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} />
+                                    {/* <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} /> */}
                                 </ListItemIcon>
-                                <ListItemText primary={item.title} />
+                                <ListItemText secondary={item.title} />
                             </ListItemButton>
                         )
                     })}
@@ -55,56 +61,10 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
         </>
     ) : (
         <ListItemButton onClick={onClick}>
-            <ListItemIcon>
-                <Icon />
+            <ListItemIcon sx={{ minWidth: '32px' }}>
+                <Icon sx={{ width: '18px', height: '18px' }} />
             </ListItemIcon>
-            <ListItemText primary={title} />
+            <ListItemText secondary={title} />
         </ListItemButton>
     )
 }
-
-// export default function MenuButton({ Icon, title, onClick, items }) {
-//     return (
-//         <>
-//             <Stack
-//                 direction="row"
-//                 justifyContent="flex-start"
-//                 justifyItems="center"
-//                 alignItems="center"
-//                 spacing={1}
-//                 width='100%'
-//                 sx={{ ':hover': { color: '#696CFF' } }}
-//             >
-//                 <Icon />
-//                 <Button
-//                     sx={{
-//                         color: '#000000',
-//                         width: '100%',
-//                         textTransform: 'none',
-//                         justifyContent: 'space-between',
-//                         flexGrow: 1,
-//                         "&:hover": {
-//                             color: '#696CFF',
-//                             // fontWeight: 'bold'
-//                         },
-//                     }}
-//                     size='medium' variant='text' endIcon={items ? <ExpandMoreIcon /> : null}
-//                     onClick={onClick}>
-//                     {title}
-//                 </Button>
-//             </Stack >
-//             {
-//                 items &&
-//                 <Stack
-//                     direction='column'
-//                     justifyContent="flex-start"
-//                     justifyItems="center"
-//                     alignItems="center"
-//                     width='100%'
-//                 >
-//                     {items.forEach((item, index) => <MenuButton key={index} Icon={null} title={item.title} onClick={item.onClick} />)}
-//                 </Stack>
-//             }
-//         </>
-//     )
-// }
