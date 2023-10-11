@@ -20,7 +20,7 @@ import {
 
 import { useState } from 'react'
 
-export default function TNavbar() {
+export default function NavbarComponent() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {

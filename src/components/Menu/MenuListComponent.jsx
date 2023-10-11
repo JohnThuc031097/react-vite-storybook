@@ -9,7 +9,7 @@ import {
 } from '@mui/icons-material';
 import { useState } from 'react';
 
-export default function MenuList({ Icon, title, onClick, items }) {
+export default function MenuListComponent({ Icon, title, onClick, items }) {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(new Array(items?.length).fill(false));
 
