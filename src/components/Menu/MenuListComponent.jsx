@@ -1,47 +1,51 @@
 import {
     List, ListItemButton, ListItemIcon, ListItemText,
+    Box,
+    Typography,
     Collapse,
+    useTheme,
 } from '@mui/material';
 import {
     ExpandMore as ExpandMoreIcon,
     ExpandLess as ExpandLessIcon,
-    // FiberManualRecord as FiberManualRecordIcon,
 } from '@mui/icons-material';
 import { useState } from 'react';
 
 export default function MenuListComponent({ Icon, title, onClick, items }) {
     const [open, setOpen] = useState(false);
-    // const [selected, setSelected] = useState(false);
-    // const [selectedChild, setSelectedChild] = useState(new Array(items?.length).fill(false));
+
+    const theme = useTheme()
 
     const handleOpenMenuClick = () => {
         setOpen(!open);
         return onClick
     };
 
-    // const handleSelectedChildClick = (key) => {
-    //     const dataNew = selectedChild.map((val, i) => {
-    //         if (key === i) {
-    //             return true
-    //         } else {
-    //             return false
-    //         }
-    //     })
-    //     setSelectedChild(dataNew)
-    // };
-
-    // const handleSelectedClick = () => {
-    //     setSelected(!selected)
-    // }
-
     return items ? (
         <>
             <ListItemButton onClick={handleOpenMenuClick}>
-                <ListItemIcon sx={{ minWidth: '32px' }}>
+                <ListItemIcon sx={{
+                    minWidth: '32px',
+                    color: theme.palette.text.primary
+                }}>
                     <Icon sx={{ width: '18px', height: '18px' }} />
                 </ListItemIcon>
-                <ListItemText secondary={title} />
-                {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                {/* <ListItemText sx={{ color: theme.palette.text.primary }} secondary={title} /> */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '100%',
+                        color: theme.palette.text.primary
+                    }}
+                >
+                    <Typography sx={{ fontSize: '14px', }} >
+                        {title}
+                    </Typography>
+                    {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </Box>
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
@@ -49,10 +53,22 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
                         return (
                             <ListItemButton key={index} sx={{ pl: 4 }} onClick={items.onClick} >
                                 <ListItemIcon sx={{ minWidth: '18px' }}>
-                                    {/* {selected[index] && <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} />} */}
-                                    {/* <FiberManualRecordIcon sx={{ width: '12px', height: '12px', color: '#696CFF' }} /> */}
                                 </ListItemIcon>
-                                <ListItemText secondary={item.title} />
+                                {/* <ListItemText sx={{ color: theme.palette.text.primary }} secondary={item.title} /> */}
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        width: '100%',
+                                        color: theme.palette.text.primary
+                                    }}
+                                >
+                                    <Typography sx={{ fontSize: '14px', }} >
+                                        {item.title}
+                                    </Typography>
+                                </Box>
                             </ListItemButton>
                         )
                     })}
@@ -61,10 +77,27 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
         </>
     ) : (
         <ListItemButton onClick={onClick}>
-            <ListItemIcon sx={{ minWidth: '32px' }}>
+            <ListItemIcon sx={{
+                minWidth: '32px',
+                color: theme.palette.text.primary,
+            }}>
                 <Icon sx={{ width: '18px', height: '18px' }} />
             </ListItemIcon>
-            <ListItemText secondary={title} />
+            {/* <ListItemText sx={{ color: theme.palette.text.primary }} secondary={title} /> */}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    width: '100%',
+                    color: theme.palette.text.primary
+                }}
+            >
+                <Typography sx={{ fontSize: '14px', }} >
+                    {title}
+                </Typography>
+            </Box>
         </ListItemButton>
     )
 }

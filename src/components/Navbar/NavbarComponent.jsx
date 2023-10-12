@@ -5,6 +5,8 @@ import {
     Person as PersonIcon,
     Settings as SettingsIcon,
     Search as SearchIcon,
+    Brightness7 as Brightness7Icon,
+    Brightness4 as Brightness4Icon
 } from "@mui/icons-material";
 import {
     Box, Stack,
@@ -15,13 +17,17 @@ import {
     ListItemIcon,
     Paper,
     InputBase,
-    Badge
+    Badge,
+    useTheme
 } from "@mui/material";
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import ColorModeContext from "../../contexts/ColorModeContext";
 
 export default function NavbarComponent() {
     const [anchorEl, setAnchorEl] = useState(null);
+    const theme = useTheme();
+    const colorMode = useContext(ColorModeContext);
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -38,7 +44,7 @@ export default function NavbarComponent() {
                 alignItems="center"
                 spacing={1}
                 sx={{
-                    bgcolor: 'white',
+                    backgroundColor: theme.palette.primary.main,
                     width: '99%',
                     height: '50px',
                     borderRadius: '15px',
@@ -53,11 +59,11 @@ export default function NavbarComponent() {
                         alignItems: 'center',
                         width: 600,
                         height: 25,
-                        backgroundColor: '#fdfdfd',
+                        backgroundColor: theme.palette.background.default,
                     }}
                 >
                     <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
-                        <SearchIcon />
+                        <SearchIcon sx={{ color: theme.palette.text.primary }} />
                     </IconButton>
                     <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
                     <InputBase
@@ -67,6 +73,9 @@ export default function NavbarComponent() {
                     />
                 </Paper>
                 <Box sx={{ width: '100%' }}></Box>
+                <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                </IconButton>
                 <IconButton
                     // onClick={handleClick}
                     size="small"
@@ -76,7 +85,7 @@ export default function NavbarComponent() {
                     aria-expanded={open ? 'true' : undefined}
                 >
                     <Badge color="error" badgeContent={1}>
-                        <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24 }} />
+                        <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24, color: theme.palette.text.primary }} />
                     </Badge>
                 </IconButton>
                 <IconButton
@@ -87,7 +96,7 @@ export default function NavbarComponent() {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                 >
-                    <Avatar sx={{ width: 24, height: 24 }}>T</Avatar>
+                    <Avatar sx={{ width: 28, height: 28 }}>T</Avatar>
                 </IconButton>
                 <Box sx={{ width: '10px' }}></Box>
             </Stack>
@@ -100,6 +109,7 @@ export default function NavbarComponent() {
                 sx={{
                     elevation: 0,
                     width: '200px',
+                    backgroundColor: theme.palette.primary.main,
                     overflow: 'visible',
                     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                     mt: 1.5,

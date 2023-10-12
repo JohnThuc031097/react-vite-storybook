@@ -1,5 +1,5 @@
 import ColorModeContext from './contexts/ColorModeContext';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { useState, useMemo } from 'react'
 import IndexPage from './pages/IndexPage';
 
@@ -13,20 +13,39 @@ function App() {
         }),
         [],
     );
-
-    const theme = useMemo(
-        () =>
-            createTheme({
-                palette: {
-                    mode,
+    const themes = {
+        'light': createTheme({
+            palette: {
+                background: {
+                    default: '#F2F7FC',
                 },
-            }),
-        [mode],
-    );
+                primary: {
+                    main: '#FFFFFF',
+                },
+                text: {
+                    primary: '#525B68',
+                }
+            }
+        }),
+        'dark': createTheme({
+            palette: {
+                background: {
+                    default: '#0F1D2C',
+                },
+                primary: {
+                    main: '#141A1F',
+                },
+                text: {
+                    primary: '#AAB2BE',
+                }
+            }
+        })
+    }
 
     return (
         <ColorModeContext.Provider value={colorMode}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={themes[mode]}>
+                <CssBaseline enableColorScheme />
                 <IndexPage />
             </ThemeProvider>
         </ColorModeContext.Provider>
