@@ -1,9 +1,8 @@
 import {
-    List, ListItemButton, ListItemIcon, ListItemText,
+    List, ListItemButton, ListItemIcon,
     Box,
     Typography,
     Collapse,
-    useTheme,
 } from '@mui/material';
 import {
     ExpandMore as ExpandMoreIcon,
@@ -14,8 +13,6 @@ import { useState } from 'react';
 export default function MenuListComponent({ Icon, title, onClick, items }) {
     const [open, setOpen] = useState(false);
 
-    const theme = useTheme()
-
     const handleOpenMenuClick = () => {
         setOpen(!open);
         return onClick
@@ -24,23 +21,18 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
     return items ? (
         <>
             <ListItemButton onClick={handleOpenMenuClick}>
-                <ListItemIcon sx={{
-                    minWidth: '32px',
-                    color: theme.palette.text.primary
-                }}>
+                <ListItemIcon sx={{ minWidth: '32px', color: 'text.primary' }}>
                     <Icon sx={{ width: '18px', height: '18px' }} />
                 </ListItemIcon>
-                {/* <ListItemText sx={{ color: theme.palette.text.primary }} secondary={title} /> */}
                 <Box
+                    color='text.primary'
                     sx={{
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         width: '100%',
-                        color: theme.palette.text.primary
-                    }}
-                >
+                    }}>
                     <Typography sx={{ fontSize: '14px', }} >
                         {title}
                     </Typography>
@@ -51,10 +43,12 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
                 <List component="div" disablePadding>
                     {items.map((item, index) => {
                         return (
-                            <ListItemButton key={index} sx={{ pl: 4 }} onClick={items.onClick} >
+                            <ListItemButton
+                                key={index}
+                                onClick={items.onClick}
+                                sx={{ pl: 4 }}>
                                 <ListItemIcon sx={{ minWidth: '18px' }}>
                                 </ListItemIcon>
-                                {/* <ListItemText sx={{ color: theme.palette.text.primary }} secondary={item.title} /> */}
                                 <Box
                                     sx={{
                                         display: 'flex',
@@ -62,10 +56,10 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
                                         width: '100%',
-                                        color: theme.palette.text.primary
                                     }}
+                                    color='text.secondary'
                                 >
-                                    <Typography sx={{ fontSize: '14px', }} >
+                                    <Typography sx={{ fontSize: '14px' }} >
                                         {item.title}
                                     </Typography>
                                 </Box>
@@ -77,23 +71,18 @@ export default function MenuListComponent({ Icon, title, onClick, items }) {
         </>
     ) : (
         <ListItemButton onClick={onClick}>
-            <ListItemIcon sx={{
-                minWidth: '32px',
-                color: theme.palette.text.primary,
-            }}>
+            <ListItemIcon sx={{ minWidth: '32px', color: 'text.primary' }}>
                 <Icon sx={{ width: '18px', height: '18px' }} />
             </ListItemIcon>
-            {/* <ListItemText sx={{ color: theme.palette.text.primary }} secondary={title} /> */}
             <Box
+                color='text.primary'
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     width: '100%',
-                    color: theme.palette.text.primary
-                }}
-            >
+                }}>
                 <Typography sx={{ fontSize: '14px', }} >
                     {title}
                 </Typography>

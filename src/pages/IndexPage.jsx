@@ -3,13 +3,13 @@ import NavbarComponent from '../components/Navbar/NavbarComponent'
 
 import {
     Box,
-    useTheme
 } from '@mui/material';
 
 export default function IndexPage() {
-    const theme = useTheme();
     return (
         <Box
+            bgcolor='background.default'
+            color='text.primary'
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -17,8 +17,6 @@ export default function IndexPage() {
                 height: '95vh',
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
-                bgcolor: theme.palette.background,
-                color: theme.palette.text.primary,
                 borderRadius: 1,
             }}
         >

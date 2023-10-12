@@ -43,8 +43,8 @@ export default function NavbarComponent() {
                 justifyContent="space-between"
                 alignItems="center"
                 spacing={1}
+                bgcolor='primary.main'
                 sx={{
-                    backgroundColor: theme.palette.primary.main,
                     width: '99%',
                     height: '50px',
                     borderRadius: '15px',
@@ -59,15 +59,14 @@ export default function NavbarComponent() {
                         alignItems: 'center',
                         width: 600,
                         height: 25,
-                        backgroundColor: theme.palette.background.default,
                     }}
                 >
                     <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
-                        <SearchIcon sx={{ color: theme.palette.text.primary }} />
+                        <SearchIcon sx={{ color: 'text.secondary' }} />
                     </IconButton>
                     <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
                     <InputBase
-                        sx={{ ml: 1, flex: 1 }}
+                        sx={{ ml: 1, pl: 2, flex: 1, width: '100%', bgcolor: 'background.input', borderRadius: '15px' }}
                         placeholder="Quick search..."
                         inputProps={{ 'aria-label': 'quick search' }}
                     />

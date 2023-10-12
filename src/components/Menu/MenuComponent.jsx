@@ -2,7 +2,6 @@ import {
     Stack,
     List,
     Typography,
-    useTheme,
 } from '@mui/material';
 
 import { IconLogo } from '../Icons/IconLogo';
@@ -10,8 +9,6 @@ import MenuListComponent from './MenuListComponent';
 import MenuPagesStorage from '../../storages/MenuPagesStorage';
 
 export default function MenuComponent() {
-    // const menuPageContext = useContext(MenuPagesStorage)
-    const theme = useTheme()
 
     return (
         <Stack
@@ -19,9 +16,9 @@ export default function MenuComponent() {
             justifyContent="center"
             alignItems="flex-start"
             spacing={1}
+            bgcolor='primary.main'
+            color='text.primary'
             sx={{
-                bgcolor: theme.palette.primary.main,
-                color: theme.palette.text.primary,
                 width: '15%',
                 minWidth: '250px',
                 borderRadius: '15px',
