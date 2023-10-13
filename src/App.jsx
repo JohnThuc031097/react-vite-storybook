@@ -18,7 +18,7 @@ function App() {
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={themes[mode]}>
-                <CssBaseline enableColorScheme />
+                <CssBaseline />
                 <IndexPage />
             </ThemeProvider>
         </ColorModeContext.Provider>

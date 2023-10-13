@@ -84,7 +84,7 @@ export default function NavbarComponent() {
                     aria-expanded={open ? 'true' : undefined}
                 >
                     <Badge color="error" badgeContent={1}>
-                        <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24, color: theme.palette.text.primary }} />
+                        <NotificationsNoneOutlinedIcon sx={{ width: 24, height: 24, color: 'text.primary' }} />
                     </Badge>
                 </IconButton>
                 <IconButton
