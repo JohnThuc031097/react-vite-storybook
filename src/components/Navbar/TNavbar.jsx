@@ -14,10 +14,10 @@ import {
     Avatar,
     Menu, MenuItem,
     Divider,
-    ListItemIcon,
     Paper,
     InputBase,
     Badge,
+    Typography,
     useTheme
 } from "@mui/material";
 
@@ -59,6 +59,7 @@ export default function NavbarComponent() {
                         alignItems: 'center',
                         width: 600,
                         height: 25,
+                        borderRadius: '15px'
                     }}
                 >
                     <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
@@ -66,7 +67,7 @@ export default function NavbarComponent() {
                     </IconButton>
                     <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
                     <InputBase
-                        sx={{ ml: 1, pl: 2, flex: 1, width: '100%', bgcolor: 'background.input', borderRadius: '15px' }}
+                        sx={{ ml: 1, pl: 2, flex: 1, bgcolor: 'background.input', color: 'text.secondary', fontSize: '14px', width: '100%', borderRadius: '12px' }}
                         placeholder="Quick search..."
                         inputProps={{ 'aria-label': 'quick search' }}
                     />
@@ -104,54 +105,49 @@ export default function NavbarComponent() {
                 id="account-menu"
                 open={open}
                 onClose={handleClose}
-                onClick={handleClose}
-                sx={{
-                    elevation: 0,
-                    width: '200px',
-                    backgroundColor: theme.palette.primary.main,
-                    overflow: 'visible',
-                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                    mt: 1.5,
-                    '& .MuiAvatar-root': {
-                        width: 32,
-                        height: 32,
-                        ml: -0.5,
-                        mr: 1,
-                    },
-                    '&:before': {
-                        content: '""',
-                        display: 'block',
-                        position: 'absolute',
-                        top: 0,
-                        right: 14,
-                        width: 10,
-                        height: 10,
-                        bgcolor: 'background.paper',
-                        transform: 'translateY(-50%) rotate(45deg)',
-                        zIndex: 0,
-                    },
-                }}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <PersonIcon fontSize="small" />
-                    </ListItemIcon>
-                    Profile
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        width: '150px'
+                    }}>
+                        <PersonIcon sx={{ width: '18px' }} />
+                        <Typography sx={{ fontSize: '14px', flexGrow: 1, pl: 2 }} >
+                            Profile
+                        </Typography>
+                    </Box>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <SettingsIcon fontSize="small" />
-                    </ListItemIcon>
-                    Settings
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        width: '100%'
+                    }}>
+                        <SettingsIcon sx={{ width: '18px' }} />
+                        <Typography sx={{ fontSize: '14px', flexGrow: 1, pl: 2 }} >
+                            Settings
+                        </Typography>
+                    </Box>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <LogoutIcon fontSize="small" />
-                    </ListItemIcon>
-                    Logout
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        width: '100%'
+                    }}>
+                        <LogoutIcon sx={{ width: '18px' }} />
+                        <Typography sx={{ fontSize: '14px', flexGrow: 1, pl: 2 }} >
+                            Logout
+                        </Typography>
+                    </Box>
                 </MenuItem>
             </Menu>
         </>

@@ -10,7 +10,7 @@ import {
 } from '@mui/icons-material';
 import { useState } from 'react';
 
-export default function MenuListComponent({ Icon, title, onClick, items }) {
+export default function TMenuItem({ Icon, title, onClick, items }) {
     const [open, setOpen] = useState(false);
 
     const handleOpenMenuClick = () => {

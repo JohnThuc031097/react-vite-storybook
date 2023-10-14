@@ -5,10 +5,10 @@ import {
 } from '@mui/material';
 
 import { IconLogo } from '../Icons/IconLogo';
-import MenuListComponent from './MenuListComponent';
+import TMenuItem from './TMenuItem';
 import MenuPagesStorage from '../../storages/MenuPagesStorage';
 
-export default function MenuComponent() {
+export default function TMenu() {
 
     return (
         <Stack
@@ -50,7 +50,7 @@ export default function MenuComponent() {
             >
                 {MenuPagesStorage.map((menu, index) => {
                     return (
-                        <MenuListComponent key={index} Icon={menu.icon} title={menu.title} items={menu.items} />
+                        <TMenuItem key={index} Icon={menu.icon} title={menu.title} items={menu.items} />
                     )
                 })}
             </List>

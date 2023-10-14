@@ -1,5 +1,5 @@
-import MenuComponent from '../components/Menu/MenuComponent'
-import NavbarComponent from '../components/Navbar/NavbarComponent'
+import MenuComponent from '../components/Menu/TMenu'
+import NavbarComponent from '../components/Navbar/TNavbar'
 
 import {
     Box,

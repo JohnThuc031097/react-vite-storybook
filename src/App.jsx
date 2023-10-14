@@ -5,7 +5,7 @@ import IndexPage from './pages/IndexPage';
 import themes from './themes';
 
 function App() {
-    const [mode, setMode] = useState('dark');
+    const [mode, setMode] = useState('light');
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () => {
