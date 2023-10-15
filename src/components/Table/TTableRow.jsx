@@ -3,22 +3,24 @@ import {
     KeyboardArrowDown as KeyboardArrowDownIcon,
 } from "@mui/icons-material";
 import {
-    Box, Chip,
+    Box,
     Collapse,
     IconButton,
     Table, TableBody, TableCell, TableRow,
     Typography
 } from "@mui/material";
 import { useState } from "react";
+
+import * as Utils from '../../utils'
 import TTableColumn from "./TTableColumn";
+import TTableCell from "./TTableCell";
 
-export default function TTableRow({ cols, row, rowOrigin, colsChild, rowChild, rowChildOrigin }) {
+export default function TTableRow({ cols, row, colsChild, rowChild }) {
     const [open, setOpen] = useState(false)
-
     return (
         <>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                <TableCell >
+                <TableCell  >
                     <IconButton
                         aria-label="expand row"
                         size="small"
@@ -28,47 +30,64 @@ export default function TTableRow({ cols, row, rowOrigin, colsChild, rowChild, r
                     </IconButton>
                 </TableCell>
                 {Object.keys(row).map((name, index) => {
-                    return (typeof row[name]) !== 'object' &&
-                        <TableCell padding="none" key={index} align={cols[index].align}>
-                            {cols[index]?.options?.highLight ?
-                                <Chip label={row[name]} variant="outlined" color={cols[index].options.highLight.color[Number(rowOrigin[name])]} /> :
-                                row[name]
-                            }
-                        </TableCell>
+                    const headCell = cols[index]
+                    const cell = row[name]
+                    const typeCell = (typeof cell)
+                    console.log(typeCell)
+                    return (typeCell) !== 'object' &&
+                        (<TTableCell key={index}
+                            type={typeCell}
+                            cell={cell}
+                            headCell={headCell}
+                        />)
                 })}
             </TableRow>
             {rowChild && Object.keys(rowChild).map((name, index) => {
                 return colsChild[index] && (
                     <TableRow key={name} >
-                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={colsChild[index].length}>
+                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={cols.length + 1}>
                             <Collapse in={open} timeout="auto" unmountOnExit>
                                 <Box sx={{ margin: 1 }}>
                                     <Typography variant="h6" gutterBottom component="div">
                                         {name.toUpperCase()}
                                     </Typography>
-                                    <Table size="small" aria-label="purchases">
-                                        <TTableColumn cols={colsChild[index]} numColsEmpty={0} />
+                                    <Table size="small" aria-label={name}>
+                                        {Array.isArray(rowChild[name]) && <TTableColumn cols={colsChild[index]} numColsEmpty={0} />}
                                         <TableBody>
-                                            {Array.isArray(rowChild[name]) && rowChild[name].map((item, indexRow) => {
+                                            {Array.isArray(rowChild[name]) ? rowChild[name].map((item, indexRow) => {
                                                 return (
                                                     <TableRow key={indexRow}>
                                                         {Object.keys(item).map((nameCell, indexCell) => {
-                                                            // return (<TableCell key={indexCell} align={colsChild[index][indexCell].align}>{item[name]}</TableCell>)
-
-                                                            console.log(rowChildOrigin[name][indexRow][nameCell])
-
-                                                            return (<TableCell key={indexCell} align={colsChild[index][indexCell].align}>
-                                                                {/* {item[nameCell]} */}
-                                                                {colsChild[index][indexCell]?.options?.highLight ?
-                                                                    <Chip label={item[nameCell]} variant="outlined" sx={{ width: colsChild[index][indexCell].options.highLight.width }}
-                                                                        color={colsChild[index][indexCell].options.highLight.color[Number(rowChildOrigin[name][indexRow][nameCell])]} /> :
-                                                                    item[nameCell]
-                                                                }
-                                                            </TableCell>)
+                                                            const headCell = colsChild[index][indexCell]
+                                                            const cell = item[nameCell]
+                                                            const typeCell = (typeof cell)
+                                                            return (
+                                                                <TTableCell key={indexCell}
+                                                                    type={typeCell}
+                                                                    cell={cell}
+                                                                    headCell={headCell}
+                                                                />
+                                                            )
                                                         })}
                                                     </TableRow>
                                                 )
-                                            })}
+                                            }) : (
+                                                Object.keys(rowChild[name]).map((nameKey, indexCell) => {
+                                                    const headCell = colsChild[index][indexCell]
+                                                    const cell = rowChild[name][nameKey]
+                                                    return (
+                                                        <div key={indexCell}>
+                                                            <TableCell
+                                                                align={headCell?.align}
+                                                                sx={{ width: headCell?.width }}
+                                                            >
+                                                                {Utils.toUpperCaseFirstChar(headCell?.name)}:
+                                                            </TableCell>
+                                                            <TableCell>{cell}</TableCell>
+                                                        </div>
+                                                    )
+                                                })
+                                            )}
                                         </TableBody>
                                     </Table>
                                 </Box>

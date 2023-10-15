@@ -1,8 +1,9 @@
 import TTable from "./TTable";
 import {
     HeadCellsRestaurant, HeadCellsTicket,
-    Restaurants, Brands
+    Restaurants, Brands, HeadCellsInfo
 } from '../../storages/RestaurantStorage'
+import * as Utils from '../../utils'
 
 export default {
     component: TTable,
@@ -13,17 +14,18 @@ export default {
 export const Default = {
     args: {
         cols: HeadCellsRestaurant,
-        colsChild: [HeadCellsTicket],
+        colsChild: [HeadCellsInfo, HeadCellsTicket],
         rows: Restaurants.map(res => ({
             ...res,
-            active: res.active ? 'Online' : 'Offline',
             brand: `${Brands[res.brand].id}`,
             name: `${Brands[res.brand].name} ${res.name}`,
             details: {
                 ...res.details,
-                tickets: res.details.tickets.map(item => ({ ...item, status: item.status ? 'Done' : 'Pending' }))
+                info: {
+                    ...res.details.info,
+                    phone: Utils.formatPhoneNumber(res.details.info.phone)
+                }
             }
         })),
-        rowsOrigin: Restaurants
     },
 };
