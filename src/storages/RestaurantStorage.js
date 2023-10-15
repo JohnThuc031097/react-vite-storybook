@@ -1,11 +1,10 @@
 
-const Restaurants = [
+export const Restaurants = [
     {
         sapCode: 4088,
         rkCode: 594,
-        brand: Brands[0],
-        isActived: true,
-        shoppingMall: '',
+        brand: 0,
+        active: true,
         name: 'Đà Lạt',
         ip: '10.9.48.1',
         mail: 'ldo.ggh.sh.nct@ggg.com.vn',
@@ -31,8 +30,8 @@ const Restaurants = [
     {
         sapCode: 4029,
         rkCode: 102,
-        brand: Brands[0],
-        isActived: true,
+        brand: 0,
+        active: true,
         name: 'Vincom Thủ Đức',
         ip: '10.8.35.1',
         mail: 'hcm.ggh.vcr.vvn@ggg.com.vn',
@@ -58,9 +57,8 @@ const Restaurants = [
     {
         sapCode: 4393,
         rkCode: 303,
-        brand: Brands[4],
-        isActived: true,
-        shoppingMall: '',
+        brand: 4,
+        active: true,
         name: 'Lê Quí Đôn',
         ip: '10.8.158.1',
         mail: 'hcm.iss.sh.lqd@ggg.com.vn',
@@ -86,8 +84,8 @@ const Restaurants = [
     {
         sapCode: 4396,
         rkCode: 517,
-        brand: Brands[4],
-        isActived: true,
+        brand: 4,
+        active: true,
         name: 'Phan Xích Long',
         ip: '10.9.22.1',
         mail: 'hcm.iss.sh.pxl@ggg.com.vn',
@@ -113,9 +111,8 @@ const Restaurants = [
     {
         sapCode: 4320,
         rkCode: 595,
-        brand: Brands[1],
-        isActived: true,
-        shoppingMall: '',
+        brand: 1,
+        active: true,
         name: 'Lê Thị Hà Hóc Môn',
         ip: '10.9.60.1',
         mail: 'hcm.kk.sh.lth@ggg.com.vn',
@@ -141,8 +138,8 @@ const Restaurants = [
     {
         sapCode: 4283,
         rkCode: 338,
-        brand: Brands[1],
-        isActived: true,
+        brand: 1,
+        active: true,
         name: 'Giga Mall',
         ip: '10.8.190.1',
         mail: 'hcm.kk.ggm.pvd@ggg.com.vn',
@@ -168,9 +165,8 @@ const Restaurants = [
     {
         sapCode: 4393,
         rkCode: 303,
-        brand: Brands[3],
-        isActived: true,
-        shoppingMall: '',
+        brand: 3,
+        active: true,
         name: 'Lê Quí Đôn',
         ip: '10.8.158.1',
         mail: 'hcm.iss.sh.lqd@ggg.com.vn',
@@ -196,8 +192,8 @@ const Restaurants = [
     {
         sapCode: 4347,
         rkCode: 340,
-        brand: Brands[3],
-        isActived: true,
+        brand: 3,
+        active: true,
         name: 'Giga Mall',
         ip: '10.8.192.1',
         mail: 'hcm.mw.ggm.pvd@ggg.com.vn',
@@ -222,7 +218,7 @@ const Restaurants = [
     },
 ]
 
-const Brands = [
+export const Brands = [
     {
         id: 'GG',
         name: 'Gogi House'
@@ -245,19 +241,48 @@ const Brands = [
     },
 ]
 
-const TableColumns = [
-    'SAP Code',
-    'RK7 Code',
-    'Brand',
-    'Active',
-    'Name',
-    'Ip',
-    'Mail',
+export const HeadCellsRestaurant = [
+    {
+        name: 'SAP Code',
+        align: 'center'
+    },
+    {
+        name: 'RK7 Code',
+        align: 'center'
+    },
+    {
+        name: 'Brand',
+        align: 'center'
+    },
+    {
+        name: 'Active',
+        align: 'center'
+    },
+    {
+        name: 'Name',
+        align: 'left'
+    },
+    {
+        name: 'Ip',
+        align: 'left'
+    },
+    {
+        name: 'Mail',
+        align: 'left'
+    },
 ]
 
-
-export default {
-    Restaurants,
-    Brands,
-    TableColumns
-}
+export const HeadCellsTicket = [
+    {
+        name: 'Date',
+        align: 'center'
+    },
+    {
+        name: 'Status',
+        align: 'center'
+    },
+    {
+        name: 'Content',
+        align: 'left'
+    }
+]

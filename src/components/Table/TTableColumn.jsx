@@ -3,12 +3,12 @@ import {
 } from '@mui/material'
 
 
-export default function TTableColumn({ cols, aligns }) {
+export default function TTableColumn({ cols }) {
     return (
         <TableRow>
             <TableCell />
-            {cols.map((col, index) =>
-                <TableCell key={index} align={aligns[index]}>{cols}</TableCell>
+            {cols.map(({ name, align }, index) =>
+                <TableCell key={index} align={align}>{name}</TableCell>
             )}
         </TableRow>
     );

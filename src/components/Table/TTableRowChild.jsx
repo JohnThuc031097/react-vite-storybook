@@ -3,8 +3,11 @@ import {
     Table, TableBody, TableCell, TableHead, TableRow,
     Typography
 } from "@mui/material";
+import TTableColumn from "./TTableColumn";
 
-export default function TTableRowDetail(title, cols, data) {
+export default function TTableRowChild({ title, cols, rows }) {
+    const alignsRow = cols.map(({ align }) => align)
+
     return (
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -14,20 +17,14 @@ export default function TTableRowDetail(title, cols, data) {
                             {title}
                         </Typography>
                         <Table size="small" aria-label="purchases">
-                            <TableHead>
-                                <TableRow>
-                                    {cols.map((name, align, index) =>
-                                        <TableCell key={index} align={align}>{name}</TableCell>
-                                    )}
-                                </TableRow>
-                            </TableHead>
+                            <TTableColumn cols={cols} />
                             <TableBody>
                                 {data.map((item, index) =>
                                     <TableRow key={index}>
                                         <TableCell component="th" scope="row">
-                                            {item[Object(item).key(0)]}
+                                            {item[Object(item).keys(0)]}
                                         </TableCell>
-                                        {Object(item).key().map((name, indexChild) => {
+                                        {Object(item).keys().map((name, indexChild) => {
                                             <TableCell key={indexChild}>{item[name]}</TableCell>
                                         })}
                                     </TableRow>
