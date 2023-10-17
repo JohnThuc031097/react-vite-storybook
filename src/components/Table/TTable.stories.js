@@ -21,8 +21,9 @@ export const Default = {
             name: `${Brands[res.brand].name} ${res.name}`,
             details: {
                 ...res.details,
-                ticket: res.details.ticket.map(item => [...item, status = (item.status ? 'Done' : 'Pending')])
+                tickets: res.details.tickets.map(item => ({ ...item, status: item.status ? 'Done' : 'Pending' }))
             }
-        }))
+        })),
+        rowsOrigin: Restaurants
     },
 };

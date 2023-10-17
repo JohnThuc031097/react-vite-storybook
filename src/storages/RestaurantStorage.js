@@ -9,7 +9,7 @@ export const Restaurants = [
         ip: '10.9.48.1',
         mail: 'ldo.ggh.sh.nct@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -36,7 +36,7 @@ export const Restaurants = [
         ip: '10.8.35.1',
         mail: 'hcm.ggh.vcr.vvn@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -63,7 +63,7 @@ export const Restaurants = [
         ip: '10.8.158.1',
         mail: 'hcm.iss.sh.lqd@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -90,7 +90,7 @@ export const Restaurants = [
         ip: '10.9.22.1',
         mail: 'hcm.iss.sh.pxl@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -117,7 +117,7 @@ export const Restaurants = [
         ip: '10.9.60.1',
         mail: 'hcm.kk.sh.lth@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -144,7 +144,7 @@ export const Restaurants = [
         ip: '10.8.190.1',
         mail: 'hcm.kk.ggm.pvd@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -171,7 +171,7 @@ export const Restaurants = [
         ip: '10.8.158.1',
         mail: 'hcm.iss.sh.lqd@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -198,7 +198,7 @@ export const Restaurants = [
         ip: '10.8.192.1',
         mail: 'hcm.mw.ggm.pvd@ggg.com.vn',
         details: {
-            ticket: [
+            tickets: [
                 {
                     date: '01-10-2023',
                     status: false,
@@ -255,8 +255,14 @@ export const HeadCellsRestaurant = [
         align: 'center'
     },
     {
-        name: 'Active',
-        align: 'center'
+        name: 'Status',
+        align: 'center',
+        options: {
+            highLight: {
+                color: ['error', 'primary'],
+                width: 75
+            }
+        }
     },
     {
         name: 'Name',
@@ -275,11 +281,17 @@ export const HeadCellsRestaurant = [
 export const HeadCellsTicket = [
     {
         name: 'Date',
-        align: 'center'
+        align: 'left'
     },
     {
         name: 'Status',
-        align: 'center'
+        align: 'center',
+        options: {
+            highLight: {
+                color: ['error', 'success'],
+                width: 75
+            }
+        }
     },
     {
         name: 'Content',
