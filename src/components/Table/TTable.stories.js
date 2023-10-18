@@ -27,5 +27,13 @@ export const Default = {
                 }
             }
         })),
+        rowsPerPageInit: 10,
+        rowsPerPageOptions: [
+            10, 15, 25,
+            {
+                label: 'All',
+                value: -1
+            }
+        ]
     },
 };
